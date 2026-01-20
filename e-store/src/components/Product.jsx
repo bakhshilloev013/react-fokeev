@@ -1,11 +1,11 @@
-function Product({photoName, name, description, price}) {
+function Product({ photoName, name, description, price, soldOut }) {
     return (
-        <li className="product">
+        <li className={`product ${soldOut ? 'sold-out' : ''}`}>
             <img src={photoName} alt={name} />
             <div>
                 <h3>{name}</h3>
                 <p>{description}</p>
-                <span>${price}</span>
+                <span>{soldOut ? 'SOLD-OUT' : `$${price}`}</span>
             </div>
         </li>
     );
