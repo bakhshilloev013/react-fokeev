@@ -1,7 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import CardTag from './CardTag';
 
-function Card({ title, description, date, imageUrl, tags }) {
+function Card({ title, description, date, imageUrl, tags, archived }) {
+    if (archived) return null;
+
     return (
         <div className="card">
             <img className="card-image" src={imageUrl} alt="" />
@@ -10,7 +12,7 @@ function Card({ title, description, date, imageUrl, tags }) {
                 <div className="card-description">{description}</div>
                 <div className="card-date">{date}</div>
                 <div className="card-tags">
-                    {tags.map((item, i) => (
+                    {tags.map((item) => (
                         <CardTag tag={item} key={uuidv4()} />
                     ))}
                 </div>

@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './index.css';
 import Card from './components/Card';
 
+// 1
 //Rus
 // 1 - Создать компонент <Card/>, который вложить в <CardContainer/>.
 // 2 - Создать компоненты <CardTag/>, которые вложить в <Card/>
@@ -13,6 +14,19 @@ import Card from './components/Card';
 // 2 - Create <CardTag/> components and nest them within <Card/>.
 // 3 - Pass data from the cardData object to the <Card/> component from <CardContainer/> manually via props.
 // 4 - Pass tag data from the cardData object to the <CardTag/> components from <Card/> manually via props.
+
+// 2
+//Rus
+// 1 - Создать динамически столько компонентов Card, сколько объектов в массиве с данными.
+// 2 - Использовать данные массива для передачи значений в пропсы компонентов.
+// 3 - Создать динамически теги на основе массива с тегами.
+// 4 - Использовать условный рендеринг для проверки свойства archived. Если archived: true, карточка не будет рендериться.
+
+//Eng
+// 1 - Dynamically create as many Card components as there are objects in the data array.
+// 2 - Use the data from the array to pass values to the component props.
+// 3 - Dynamically create tags based on the tags array.
+// 4 - Use conditional rendering to check the archived property. If archived: true, the card will not be rendered.
 
 const cardData = [
     {
@@ -72,7 +86,7 @@ const cardData = [
 export default function CardContainer() {
     return (
         <div className="card-container">
-            {cardData.map((item, i) => (
+            {cardData.map((item) => (
                 <Card {...item} key={uuidv4()} />
             ))}
         </div>
