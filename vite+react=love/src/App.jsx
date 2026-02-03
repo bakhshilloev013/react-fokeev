@@ -3,6 +3,7 @@ import { useState } from 'react';
 function App() {
     const [counter, setCounter] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState('');
 
     const addCounter = () => {
         setCounter((prev) => prev + 1);
@@ -32,20 +33,26 @@ function App() {
 
             <div className="logo-container">
                 <img
+                    onMouseEnter={(e) => setActive('vite')}
+                    onMouseLeave={e => setActive('')}
                     src="/vite.svg"
-                    className={`logo ${counter >= 1 && 'active'}`}
+                    className={`logo ${(counter >= 1 || active === 'vite') && 'active'}`}
                     alt="Vite logo"
                 />
                 <p>+</p>
                 <img
+                    onMouseEnter={(e) => setActive('react')}
+                    onMouseLeave={e => setActive('')}
                     src="/react.svg"
-                    className={`logo ${counter >= 2 && 'active'}`}
+                    className={`logo ${(counter >= 2 || active === 'react') && 'active'}`}
                     alt="React logo"
                 />
                 <p>=</p>
                 <img
+                    onMouseEnter={(e) => setActive('love')}
+                    onMouseLeave={e => setActive('')}
                     src="/love.svg"
-                    className={`logo ${counter >= 3 && 'active'}`}
+                    className={`logo ${(counter >= 3 || active === 'love') && 'active'}`}
                     alt="Love logo"
                 />
             </div>
