@@ -29,7 +29,7 @@ export default function App() {
     };
 
     const nextTab = () => {
-        if (tab === 2) {
+        if (tab === tabData.length - 1) {
             setTab(0);
         } else {
             setTab((prev) => prev + 1);
@@ -38,7 +38,7 @@ export default function App() {
 
     const prevTab = () => {
         if (tab === 0) {
-            setTab(2);
+            setTab(tabData.length - 1);
         } else {
             setTab((prev) => prev - 1);
         }
