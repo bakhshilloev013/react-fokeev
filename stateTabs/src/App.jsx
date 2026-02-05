@@ -61,7 +61,7 @@ export default function App() {
                             onClick={() => setTab(i)}
                             className={`tab-button ${tab === i && 'active'}`}
                         >
-                            Tab 1
+                            Tab {i + 1}
                         </button>
                     ))}
                     {/* <button onClick={() => setTab(0)} className={`tab-button ${tab === 0 && 'active'}`}>
