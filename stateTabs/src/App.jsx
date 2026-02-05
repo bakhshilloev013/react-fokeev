@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import cardData from './data/cardData';
 import CardContainer from './components/CardContainer';
 import Footer from './components/Footer';
@@ -56,6 +57,7 @@ export default function App() {
                 <div className="tab-buttons">
                     {tabData.map((item, i) => (
                         <button
+                            key={uuidv4()}
                             onClick={() => setTab(i)}
                             className={`tab-button ${tab === i && 'active'}`}
                         >
