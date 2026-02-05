@@ -54,7 +54,15 @@ export default function App() {
                 <h1>State Tabs Card Display</h1>
 
                 <div className="tab-buttons">
-                    <button onClick={() => setTab(0)} className={`tab-button ${tab === 0 && 'active'}`}>
+                    {tabData.map((item, i) => (
+                        <button
+                            onClick={() => setTab(i)}
+                            className={`tab-button ${tab === i && 'active'}`}
+                        >
+                            Tab 1
+                        </button>
+                    ))}
+                    {/* <button onClick={() => setTab(0)} className={`tab-button ${tab === 0 && 'active'}`}>
                         Tab 1
                     </button>
                     <button onClick={() => setTab(1)} className={`tab-button ${tab === 1 && 'active'}`}>
@@ -62,7 +70,7 @@ export default function App() {
                     </button>
                     <button onClick={() => setTab(2)} className={`tab-button ${tab === 2 && 'active'}`}>
                         Tab 3
-                    </button>
+                    </button> */}
                 </div>
 
                 <CardContainer cards={tabData[tab]} />
