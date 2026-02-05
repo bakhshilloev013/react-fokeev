@@ -21,9 +21,26 @@ const tabData = [
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false);
+    const [tab, setTab] = useState(0);
 
     const toggleIsOpen = () => {
         setIsOpen((prev) => !prev);
+    };
+
+    const nextTab = () => {
+        if (tab === 2) {
+            setTab(0);
+        } else {
+            setTab((prev) => prev + 1);
+        }
+    };
+
+    const prevTab = () => {
+        if (tab === 0) {
+            setTab(2);
+        } else {
+            setTab((prev) => prev - 1);
+        }
     };
 
     if (!isOpen) return <button onClick={toggleIsOpen}>Start</button>;
@@ -37,16 +54,22 @@ export default function App() {
                 <h1>State Tabs Card Display</h1>
 
                 <div className="tab-buttons">
-                    <button className="tab-button  active">Tab 1</button>
-                    <button className="tab-button">Tab 2</button>
-                    <button className="tab-button">Tab 3</button>
+                    <button onClick={() => setTab(0)} className={`tab-button ${tab === 0 && 'active'}`}>
+                        Tab 1
+                    </button>
+                    <button onClick={() => setTab(1)} className={`tab-button ${tab === 1 && 'active'}`}>
+                        Tab 2
+                    </button>
+                    <button onClick={() => setTab(2)} className={`tab-button ${tab === 2 && 'active'}`}>
+                        Tab 3
+                    </button>
                 </div>
 
-                <CardContainer cards={tabData[0]} />
+                <CardContainer cards={tabData[tab]} />
 
                 <div className="navigation-buttons">
-                    <button>&lt; Previous</button>
-                    <button>Next &gt;</button>
+                    <button onClick={prevTab}>&lt; Previous</button>
+                    <button onClick={nextTab}>Next &gt;</button>
                 </div>
 
                 <Footer />
