@@ -1,5 +1,5 @@
-import { useState } from "react";
-import "./index.css";
+import { useState } from 'react';
+import './index.css';
 
 //Rus
 //1 - Создайте состояние input, которое будет отображать результат вычислений в калькуляторе.
@@ -26,39 +26,98 @@ import "./index.css";
 // Use this method for all operations in the calculator.
 
 function Calculator() {
+  const [input, setInput] = useState('0');
+  console.log(input);
+
+  const increment = () => {
+    setInput((prev) => parseFloat(prev) + 1 + '');
+  };
+
+  const decrement = () => {
+    setInput((prev) => parseFloat(prev) - 1 + '');
+  };
+
+  const btnHandler = (e) => {
+    const btnKey = e.target.textContent;
+    const operators = ['+', '-', '*', '/', ','];
+
+    if (btnKey === 'C') {
+      setInput('0');
+    } else if (btnKey === '+') {
+      if (operators.includes(input.at(-1))) return;
+      setInput((prev) => prev + btnKey);
+    } else if (btnKey === '-') {
+      if (operators.includes(input.at(-1))) return;
+      setInput((prev) => prev + btnKey);
+    } else if (btnKey === '×') {
+      if (operators.includes(input.at(-1))) return;
+      setInput((prev) => prev + '*');
+    } else if (btnKey === '=') {
+      setInput(eval(input) + '');
+    } else if (btnKey === '÷') {
+      if (operators.includes(input.at(-1))) return;
+      setInput((prev) => prev + '/');
+    } else if (btnKey === ',') {
+      if (operators.includes(input.at(-1))) return;
+      setInput((prev) => prev + '.');
+    } else {
+      if (input === '0') {
+        setInput('' + btnKey);
+      } else {
+        setInput((prev) => prev + btnKey);
+      }
+    }
+  };
+
   return (
     <div className="calculator-container">
       <h1 className="calculator-title">UseState Calculator</h1>
       <div className="calculator">
-        <div className="display">0</div>
+        <div className="display">{input}</div>
         <div className="increment-buttons">
-          <button className="increment">+1</button>
-          <button className="decrement">-1</button>
+          <button onClick={increment} className="increment">
+            +1
+          </button>
+          <button onClick={decrement} className="decrement">
+            -1
+          </button>
         </div>
         <div className="buttons">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button className="operator">+</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button className="operator">-</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button className="operator">×</button>
-          <button>0</button>
-          <button>,</button>
-          <button className="equals">=</button>
-          <button className="operator">÷</button>
-          <button className="clear">C</button>
+          <button onClick={btnHandler}>1</button>
+          <button onClick={btnHandler}>2</button>
+          <button onClick={btnHandler}>3</button>
+          <button onClick={btnHandler} className="operator">
+            +
+          </button>
+          <button onClick={btnHandler}>4</button>
+          <button onClick={btnHandler}>5</button>
+          <button onClick={btnHandler}>6</button>
+          <button onClick={btnHandler} className="operator">
+            -
+          </button>
+          <button onClick={btnHandler}>7</button>
+          <button onClick={btnHandler}>8</button>
+          <button onClick={btnHandler}>9</button>
+          <button onClick={btnHandler} className="operator">
+            ×
+          </button>
+          <button onClick={btnHandler}>0</button>
+          <button onClick={btnHandler}>,</button>
+          <button onClick={btnHandler} className="equals">
+            =
+          </button>
+          <button onClick={btnHandler} className="operator">
+            ÷
+          </button>
+          <button onClick={btnHandler} className="clear">
+            C
+          </button>
         </div>
       </div>
       <div className="technologies-used">
         <p>
-          <strong>Technologies used:</strong> React, JSX, CSS Modules, JavaScript (useState, events
-          handling)
+          <strong>Technologies used:</strong> React, JSX, CSS Modules,
+          JavaScript (useState, events handling)
         </p>
       </div>
     </div>
