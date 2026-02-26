@@ -1,26 +1,53 @@
+import { useState } from 'react';
+
 function App() {
+  const [openSection, setOpenSection] = useState({
+    taskList: false,
+    taskForm: false,
+    competedTask: false,
+  });
+
+  const toggleOpenSectionHandler = (prop) => {
+    setOpenSection(prev => ({ ...prev, [prop]: !prev[prop] }));
+  };
+
   return (
     <div className="app">
       <div className="task-container">
         <h1>Task list with priority</h1>
-        <button className="close-button">+</button>
-        <TaskForm />
+        <button
+          className={`close-button ${openSection.taskForm ? 'open' : ''}`}
+          onClick={() => toggleOpenSectionHandler('taskForm')}
+        >
+          +
+        </button>
+        {openSection.taskForm && <TaskForm />}
       </div>
 
       <div className="task-container">
         <h2>Tasks</h2>
-        <button className="close-button">+</button>
+        <button
+          className={`close-button ${openSection.taskList ? 'open' : ''}`}
+          onClick={() => toggleOpenSectionHandler('taskList')}
+        >
+          +
+        </button>
         <div className="sort-controls">
           <button className="sort-button">By date</button>
           <button className="sort-button">By priority</button>
         </div>
-        <TaskList />
+        {openSection.taskList && <TaskList />}
       </div>
 
       <div className="completed-task-container">
         <h2>Completed task</h2>
-        <button className="close-button">+</button>
-        <CompletedTaskList />
+        <button
+          className={`close-button ${openSection.completedTask ? 'open' : ''}`}
+          onClick={() => toggleOpenSectionHandler('completedTask')}
+        >
+          +
+        </button>
+        {openSection.completedTask && <CompletedTaskList />}
       </div>
 
       <Footer />
