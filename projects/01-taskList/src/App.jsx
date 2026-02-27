@@ -107,8 +107,8 @@ function TaskList({ tasks }) {
   
   return (
     <ul className="task-list">
-      {tasks.map((item, i) => (
-        <TaskItem key={uuidv4()} task={item} />
+      {tasks.map((item) => (
+        <TaskItem key={item.id} task={item} />
       ))}
     </ul>
   );
