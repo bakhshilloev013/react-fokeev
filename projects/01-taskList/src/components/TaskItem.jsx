@@ -4,7 +4,7 @@ export function TaskItem({ task }) {
   const { title, priority, date } = task;
 
   return (
-    <li className={`task-item ${priority?.toLowerCase?.() ?? ''}`}>
+    <li className={`task-item ${priority.toLowerCase()}`}>
       <div className="task-info">
         <div>
           Title <strong>{title}</strong>
