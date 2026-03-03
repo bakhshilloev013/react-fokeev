@@ -14,7 +14,9 @@ export function TaskForm({ addTask }) {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    addTask(task);
+    if (task.title.trim() && task.date) {
+      addTask(task);
+    }
     setTask(createEmptyTask());
   };
 
@@ -31,7 +33,10 @@ export function TaskForm({ addTask }) {
         placeholder="Task title"
         required
       />
-      <select value={task.priority} onChange={(e) => formChangeHandler(e, 'priority')}>
+      <select
+        value={task.priority}
+        onChange={(e) => formChangeHandler(e, 'priority')}
+      >
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
@@ -46,4 +51,3 @@ export function TaskForm({ addTask }) {
     </form>
   );
 }
-
