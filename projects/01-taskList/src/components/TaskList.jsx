@@ -1,12 +1,14 @@
 import { TaskItem } from './TaskItem.jsx';
 
-export function TaskList({ tasks }) {
+export function TaskList({ tasks, toggleCompleteTask, deleteTask }) {
   return (
     <ul className="task-list">
-      {tasks.map((item) => (
-        <TaskItem key={item.id} task={item} />
-      ))}
+      {tasks.map(
+        (item) =>
+          !item.completed && (
+            <TaskItem deleteTask={deleteTask} toggleCompleteTask={toggleCompleteTask} key={item.id} task={item} />
+          ),
+      )}
     </ul>
   );
 }
-

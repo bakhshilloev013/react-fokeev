@@ -1,4 +1,4 @@
-export function TaskItem({ task }) {
+export function TaskItem({ task, toggleCompleteTask, deleteTask }) {
   if (!task) return null;
 
   const { title, priority, date } = task;
@@ -12,10 +12,18 @@ export function TaskItem({ task }) {
         <div className="task-deadline">Due: {date}</div>
       </div>
       <div className="task-buttons">
-        <button className="complete-button">Complete</button>
-        <button className="delete-button">Button</button>
+        {!task.completed && (
+          <button
+            onClick={(e) => toggleCompleteTask(task.id)}
+            className="complete-button"
+          >
+            Complete
+          </button>
+        )}
+        <button onClick={(e) => deleteTask(task.id)} className="delete-button">
+          Delete
+        </button>
       </div>
     </li>
   );
 }
-

@@ -17,6 +17,21 @@ function App() {
     setTasks((prev) => [...prev, task]);
   };
 
+  const toggleCompleteTask = (id) => {
+    const arr = tasks.map(item => {
+      if (item.id === id) {
+        item.completed = true;
+      }
+      return item;
+    })
+    console.log(arr);
+    setTasks(arr);
+  }
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(item => item.id !== id));
+  }
+
   const toggleOpenSectionHandler = (prop) => {
     setOpenSection((prev) => ({ ...prev, [prop]: !prev[prop] }));
   };
@@ -46,7 +61,7 @@ function App() {
           <button className="sort-button">By date</button>
           <button className="sort-button">By priority</button>
         </div>
-        {openSection.taskList && <TaskList tasks={tasks} />}
+        {openSection.taskList && <TaskList deleteTask={deleteTask} toggleCompleteTask={toggleCompleteTask} tasks={tasks} />}
       </div>
 
       <div className="completed-task-container">
@@ -57,7 +72,7 @@ function App() {
         >
           +
         </button>
-        {openSection.completedTask && <CompletedTaskList tasks={tasks} />}
+        {openSection.completedTask && <CompletedTaskList toggleCompleteTask={toggleCompleteTask} deleteTask={deleteTask} tasks={tasks} />}
       </div>
 
       <Footer />
