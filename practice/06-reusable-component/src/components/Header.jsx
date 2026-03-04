@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import downloadButtonFile from '../utils/downloadButtonFile';
 
 function Header({ showInstructions, toggleInstructions }) {
@@ -15,6 +16,11 @@ function Header({ showInstructions, toggleInstructions }) {
       </div>
     </header>
   );
+}
+
+Header.propTypes = {
+    showInstructions: propTypes.bool,
+    toggleInstructions: propTypes.func
 }
 
 export default Header;

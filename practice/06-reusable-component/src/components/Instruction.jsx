@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 
 function Instruction({showInstructions}) {
   return (
@@ -104,6 +105,10 @@ function Instruction({showInstructions}) {
         </p>
       </div>
   )
+}
+
+Instruction.propTypes = {
+    showInstructions: propTypes.bool
 }
 
 export default Instruction
