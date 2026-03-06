@@ -1,57 +1,15 @@
-import Button from './Button';
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
 
-function Main({handleClick}) {
+function Main({ children }) {
   return (
     <main className="component-showcase">
-      <section className="component-group">
-        <h2>Variants</h2>
-        <div className="component-card">
-          <Button onClick={handleClick}>
-            <span>⬅️</span> Hello chidlren prop
-          </Button>
-          <Button onClick={handleClick}>
-            Hello chidlren prop <span>➡️</span>
-          </Button>
-          {/* <Button text='TEXT' size='large' icon='⭐' isDisabled fullWidth />
-          <Button text='Hello world' variant='secondary' /> */}
-          <button className="button primary">Primary</button>
-          <button className="button secondary">Secondary</button>
-          <button className="button danger">Danger</button>
-          <button className="button gradient">Gradient</button>
-          <button className="button outline">Outline</button>
-        </div>
-      </section>
-
-      <section className="component-group">
-        <h2>Sizes</h2>
-        <div className="component-card">
-          <button className="button small primary">Small</button>
-          <button className="button medium primary">Medium</button>
-          <button className="button large primary">Large</button>
-        </div>
-      </section>
-
-      <section className="component-group">
-        <h2>Button States</h2>
-        <div className="component-card">
-          <button className="button primary">Default</button>
-          <button className="button primary disabled">Disabled</button>
-        </div>
-      </section>
-
-      <section className="component-group">
-        <h2>Full Width Button</h2>
-        <div className="component-card">
-          <button className="button secondary full-width">Full Width</button>
-        </div>
-      </section>
+      {children}
     </main>
   );
 }
 
 Main.propTypes = {
-  handleClick: propTypes.func
-}
+  children: propTypes.any,
+};
 
 export default Main;
