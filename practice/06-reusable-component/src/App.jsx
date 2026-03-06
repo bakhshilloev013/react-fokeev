@@ -30,33 +30,41 @@ function App() {
 
       <Main>
         <Section titleText="Variants">
-          <Button onClick={handleClick}>
-            <span>⬅️</span> Hello chidlren prop
-          </Button>
-          {/* <Button onClick={handleClick}>
-            Hello chidlren prop <span>➡️</span>
-          </Button>
-          <Button>Primary</Button>
+          <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="danger">Danger</Button>
           <Button variant="gradient">Gradient</Button>
-          <Button variant="outline">Outline</Button> */}
+          <Button variant="outline">Outline</Button>
         </Section>
 
         <Section titleText="Sizes">
-          <Button size="small">Small</Button>
-          <Button>Medium</Button>
-          <Button size="large">Large</Button>
+          <Button variant="primary" size="small">
+            Small
+          </Button>
+          <Button variant="primary" size="medium">
+            Medium
+          </Button>
+          <Button variant="primary" size="large">
+            Large
+          </Button>
         </Section>
 
         <Section titleText="Button States">
           <Button>Default</Button>
-          <Button isDisabled>Disabled</Button>
+          <Button isDisabled>
+            Disabled
+          </Button>
         </Section>
 
         <Section titleText="Full Width Button">
           <Button variant="secondary" fullWidth>
             Full Width
+          </Button>
+        </Section>
+
+        <Section titleText="With function">
+          <Button onClick={handleClick} variant="primary">
+            Click me
           </Button>
         </Section>
       </Main>
