@@ -12,6 +12,10 @@ function App() {
     setShowInstructions((prev) => !prev);
   };
 
+  const handleClick = () => {
+    console.log('btn has clicked')
+  }
+
   return (
     <div className="app">
       <Header
@@ -21,7 +25,7 @@ function App() {
 
       <Instruction showInstructions={showInstructions} />
 
-      <Main />
+      <Main handleClick={handleClick} />
 
       <Footer />
     </div>

@@ -1,15 +1,16 @@
 import Button from './Button';
+import propTypes from 'prop-types'
 
-function Main() {
+function Main({handleClick}) {
   return (
     <main className="component-showcase">
       <section className="component-group">
         <h2>Variants</h2>
         <div className="component-card">
-          <Button>
+          <Button onClick={handleClick}>
             <span>⬅️</span> Hello chidlren prop
           </Button>
-          <Button>
+          <Button onClick={handleClick}>
             Hello chidlren prop <span>➡️</span>
           </Button>
           {/* <Button text='TEXT' size='large' icon='⭐' isDisabled fullWidth />
@@ -47,6 +48,10 @@ function Main() {
       </section>
     </main>
   );
+}
+
+Main.propTypes = {
+  handleClick: propTypes.func
 }
 
 export default Main;

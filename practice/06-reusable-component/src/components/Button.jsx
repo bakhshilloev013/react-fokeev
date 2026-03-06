@@ -1,25 +1,25 @@
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
 
 function Button({
-  text,
-//   icon,
-  size = 'medium',
-  variant = 'primary',
-  fullWidth = false,
-  isDisabled = false,
-  onClick,
-  children
+    text,
+    //   icon,
+    size = 'medium',
+    variant = 'primary',
+    fullWidth = false,
+    isDisabled = false,
+    onClick,
+    children,
 }) {
-  return (
-    <div
-      disabled={isDisabled}
-      className={`button ${variant} ${size} ${isDisabled ? 'disabled' : ''} ${fullWidth ? 'full-width' : ''}`}
-      onClick={onClick}
-    >
-      {/* {icon && <span>{icon}</span>} */}
-      {children}
-    </div>
-  );
+    return (
+        <div
+            disabled={isDisabled}
+            className={`button ${variant} ${size} ${isDisabled ? 'disabled' : ''} ${fullWidth ? 'full-width' : ''}`}
+            onClick={onClick}
+        >
+            {/* {icon && <span>{icon}</span>} */}
+            {children}
+        </div>
+    );
 }
 
 export default Button;
@@ -32,8 +32,8 @@ Button.propTypes = {
     fullWidth: propTypes.bool,
     isDisabled: propTypes.bool,
     onClick: propTypes.func,
-    children: propTypes.any
-}
+    children: propTypes.any,
+};
 
 // Button.defaultProps = {
 //     text: 'Some text'
