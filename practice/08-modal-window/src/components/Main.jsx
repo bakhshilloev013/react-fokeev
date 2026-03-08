@@ -1,9 +1,10 @@
-function Main({children}) {
+function Main({ children }) {
   return (
-    <main>
-        {children}
-    </main>
-  )
+    <>
+      <h1 className="title">Universal Modal Component</h1>
+      {children}
+    </>
+  );
 }
 
-export default Main
+export default Main;

@@ -41,27 +41,41 @@ import './index.css';
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function toggleModalOpen(bool) {
-    setIsModalOpen(bool);
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+
+  function alertCloseModal() {
+    alert('Ok');
+    closeModal();
   }
 
   return (
     <div className="app">
       <Main>
-        <h1 className="title">Universal Modal Component</h1>
-        <Button classList={'button'} onClick={() => toggleModalOpen(true)}>
+        <Button classList={'button'} onClick={openModal}>
           Open Modal
         </Button>
         {isModalOpen && (
-          <div className="overlay" onClick={() => toggleModalOpen(false)}>
-            <Modal
-              toggleModalOpen={toggleModalOpen}
-              onClick={(e) => e.stopPropagation()}
-              title='Confirm Your Action'
-              content='Are you sure you want to proceed? This action cannot be undone.'
-              showCloseButton={isModalOpen}
-            />
-          </div>
+          <Modal
+            closeModal={closeModal}
+            title="Confirm Your Action"
+            content="Are you sure you want to proceed? This action cannot be undone."
+          >
+            <Button classList={'closeButton'} onClick={closeModal}>
+              &times;
+            </Button>
+            <Button classList={'secondaryButton'} onClick={closeModal}>
+              Cancel
+            </Button>
+            <Button classList={'primaryButton'} onClick={alertCloseModal}>
+              Yes, Continue
+            </Button>
+          </Modal>
         )}
       </Main>
     </div>
