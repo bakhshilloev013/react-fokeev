@@ -7,6 +7,7 @@ function App() {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const API_URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
 
@@ -14,15 +15,18 @@ function App() {
     async function fetchData() {
       try {
         const res = await fetch(API_URL);
-        if (!res.ok) {
-          throw new Error(
-            `Not valid city name ${res.status} ${res.statusText}`,
-          );
-        }
         const json = await res.json();
-        setWeatherData(json);
+        if (json.hasOwnProperty('error')) {
+          setError(json.error.message);
+        } else {
+          setWeatherData(json);
+          setError(null);
+        }
       } catch (error) {
         setError(error.message);
+        setWeatherData(null);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchData();
@@ -32,9 +36,7 @@ function App() {
     <div className="app">
       <div className="widget-container">
         <div className="weather-card-container">
-          <h1 className="app-title">
-            {weatherData ? 'Weather Widget' : error}
-          </h1>
+          <h1 className="app-title">Weather Widget</h1>
           <div className="search-container">
             <input
               value={city}
@@ -45,7 +47,11 @@ function App() {
             />
           </div>
         </div>
-        {weatherData && (
+        {isLoading ? (
+          <h3>Loading...</h3>
+        ) : error ? (
+          <h3>{error}</h3>
+        ) : (
           <div className="weather-card">
             <h2>
               {weatherData?.location?.country}, {weatherData?.location?.name}
@@ -55,11 +61,13 @@ function App() {
               alt="icon"
               className="weather-icon"
             />
-            <p className="temperature">{weatherData?.current?.temp_c}°C</p>
+            <p className="temperature">
+              {Math.round(weatherData?.current?.temp_c)}°C
+            </p>
             <p className="condition">{weatherData?.current?.condition?.text}</p>
             <div className="weather-details">
               <p>Humidity: {weatherData?.current?.humidity}%</p>
-              <p>Wind: {weatherData?.current?.wind_kph} km/h</p>
+              <p>Wind: {Math.round(weatherData?.current?.wind_kph)} km/h</p>
             </div>
           </div>
         )}
